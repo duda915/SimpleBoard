@@ -25,5 +25,11 @@
             admin123
         </property>
 
+        <property name="connection.pool_size">
+            50
+        </property>
+
+        
+
     </session-factory>
 </hibernate-configuration>
