@@ -29,7 +29,8 @@
             50
         </property>
 
-
+        <mapping class="com.mdud.simpleboard.datamodel.Topic"/>
+        <mapping class="com.mdud.simpleboard.datamodel.Post"/>
 
     </session-factory>
 </hibernate-configuration>
