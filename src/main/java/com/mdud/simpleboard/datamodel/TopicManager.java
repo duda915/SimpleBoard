@@ -199,7 +199,12 @@ public class TopicManager {
         try {
             tx = session.beginTransaction();
             Topic topic = session.get(Topic.class, topicId);
-            session.delete(topic);
+
+            if(topic != null)
+                session.delete(topic);
+            else
+                System.out.println(IdExceptionErrorString);
+
             tx.commit();
         } catch (HibernateException e) {
             if(tx != null) tx.rollback();
@@ -219,7 +224,12 @@ public class TopicManager {
         try {
             tx = session.beginTransaction();
             Post post = session.get(Post.class, postId);
-            session.delete(post);
+
+            if(post != null)
+                session.delete(post);
+            else
+                System.out.println(IdExceptionErrorString);
+
             tx.commit();
         } catch (HibernateException e) {
             if(tx != null) tx.rollback();
