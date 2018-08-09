@@ -136,8 +136,12 @@ public class TopicManager {
             tx = session.beginTransaction();
 
             Topic topic = session.get(Topic.class, topicId);
-            post.setTopic(topic);
-            postId = (Integer) session.save(post);
+            if(topic != null) {
+                post.setTopic(topic);
+                postId = (Integer) session.save(post);
+            } else
+                System.out.println(IdExceptionErrorString);
+
             tx.commit();
         } catch (HibernateException e) {
             if(tx != null) tx.rollback();

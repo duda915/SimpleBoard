@@ -52,7 +52,8 @@ public class TopicManagerTest {
         topicManager.deleteTopic(topicId);
 
         //Not existing topic
-
+        postId = topicManager.addTopicPost(topicId, new Post("Tester", "Test"));
+        assertNull(postId);
     }
 
     @Test()
