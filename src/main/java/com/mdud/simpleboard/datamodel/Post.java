@@ -3,16 +3,16 @@ package com.mdud.simpleboard.datamodel;
 
 import javax.persistence.*;
 
-@Entity(name = "post")
-@Table(name = "post")
+@Entity
+@Table (name = "post")
 public class Post {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "topic_id")
-    private int topicId;
+    @ManyToOne
+    private Topic topic;
 
     @Column(name = "user_name")
     private String postAuthor;
@@ -20,10 +20,11 @@ public class Post {
     @Column(name = "content")
     private String postContent;
 
+
+
     public Post() {}
 
-    public Post(int topicId, String postAuthor, String postContent) {
-        this.topicId = topicId;
+    public Post(String postAuthor, String postContent) {
         this.postAuthor = postAuthor;
         this.postContent = postContent;
     }
@@ -36,12 +37,12 @@ public class Post {
         this.id = id;
     }
 
-    public int getTopicId() {
-        return topicId;
+    public Topic getTopic() {
+        return topic;
     }
 
-    public void setTopicId(int topicId) {
-        this.topicId = topicId;
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public String getPostAuthor() {
@@ -59,4 +60,5 @@ public class Post {
     public void setPostContent(String postContent) {
         this.postContent = postContent;
     }
+
 }

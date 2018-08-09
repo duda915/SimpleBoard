@@ -4,18 +4,19 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity (name = "topic")
+@Entity
+@Table (name = "topic")
 public class Topic {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "title")
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> list = new ArrayList<>();
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    private List<Post> posts = new ArrayList<>();
 
     public Topic() {}
 
@@ -39,11 +40,11 @@ public class Topic {
         this.title = title;
     }
 
-    public List<Post> getList() {
-        return list;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setList(List<Post> list) {
-        this.list = list;
+    public void setPosts(List<Post> list) {
+        this.posts = list;
     }
 }
