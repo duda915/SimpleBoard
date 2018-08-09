@@ -102,7 +102,7 @@ public class App
                     parameters = command.split(" ", 2);
                     if(parameters.length == 2) {
                         try {
-                            topicManager.addTopicPost(activeTopic, new Post(user.getUserName(), parameters[1]));
+                            topicManager.addTopicPost(activeTopic, new Post(user.getUserName().toLowerCase(), parameters[1]));
                             break;
                         } catch (NumberFormatException e) {
 
@@ -111,6 +111,10 @@ public class App
                     System.out.println("usage: mkpost post content");
                     break;
                 case "rmtop":
+                    if(!user.getUserName().equals("admin")) {
+                        System.out.println("admin-only");
+                        break;
+                    }
                     parameters = command.split(" ", 2);
                     if(parameters.length == 2) {
                         try {
@@ -128,7 +132,14 @@ public class App
                     if(parameters.length == 2) {
                         try {
                             int postId = Integer.parseInt(parameters[1]);
-                            topicManager.deletePost(postId);
+                            Post post = topicManager.getPost(postId);
+                            if(post == null)
+                                break;
+                            if(!user.getUserName().equals("admin") && !user.getUserName().equals(post.getPostAuthor())) {
+                                System.out.println("Only author can remove post!");
+                                break;
+                            }
+                                topicManager.deletePost(postId);
                             break;
                         } catch (NumberFormatException e) {
 
@@ -137,6 +148,10 @@ public class App
                     System.out.println("usage: rmpost postId");
                     break;
                 case "edtop":
+                    if(!user.getUserName().equals("admin")) {
+                        System.out.println("admin-only");
+                        break;
+                    }
                     parameters = command.split(" ", 3);
                     if(parameters.length == 3) {
                         try {
@@ -154,6 +169,14 @@ public class App
                     if(parameters.length == 4) {
                         try {
                             int postId = Integer.parseInt(parameters[1]);
+
+                            Post post = topicManager.getPost(postId);
+                            if(post == null)
+                                break;
+                            if(!user.getUserName().equals("admin") && !user.getUserName().equals(post.getPostAuthor())) {
+                                System.out.println("Only author can edit post!");
+                                break;
+                            }
                             topicManager.editPost(postId, new Post(parameters[2], parameters[3]));
                             break;
                         } catch (NumberFormatException e) {
