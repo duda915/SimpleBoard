@@ -10,6 +10,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * Hello world!
@@ -20,6 +21,7 @@ public class App
     private static SessionFactory sessionFactory;
     public static void main( String[] args )
     {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure("hibernate.cfg.xml")
             .build();
@@ -35,14 +37,23 @@ public class App
         Scanner scanner = new Scanner(System.in);
         String command = "";
 
+        System.out.println("SimpleBoard - Hibernate local notes board");
+        System.out.println("Available commands: ");
+        System.out.println("q, ls, ls topicId, mktop, mkpost, rmtop, rmpost, edtop, edpost");
+
         while(!command.equals("q")) {
             command = scanner.nextLine();
             String[] parameters = command.toLowerCase().split(" ");
 
+            System.out.println();
+            System.out.println();
+            System.out.println();
+
             switch(parameters[0]) {
                 case "help":
                     System.out.println("Available commands: ");
-                    System.out.println("q, ls, mktop, mkpost,");
+                    System.out.println("q, ls, ls topicId, mktop, mkpost, rmtop, rmpost, edtop, edpost");
+
                     break;
                 case "ls":
                     if(parameters.length == 1) {
