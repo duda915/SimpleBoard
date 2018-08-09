@@ -15,7 +15,7 @@ public class Topic {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE)
     private List<Post> posts = new ArrayList<>();
 
     public Topic() {}

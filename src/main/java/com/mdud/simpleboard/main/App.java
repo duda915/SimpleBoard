@@ -31,8 +31,10 @@ public class App
 
         TopicManager topicManager = new TopicManager(sessionFactory);
 
+        topicManager.addTopicPost(2, new Post("Tester", "Test post 2"));
+
         topicManager.listTopics();
-        topicManager.listTopicPosts(1);
+        topicManager.listTopicPosts(2);
 
         sessionFactory.close();
 
