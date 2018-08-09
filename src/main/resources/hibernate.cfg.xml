@@ -14,7 +14,7 @@
         </property>
         
         <property name="connection.url">
-            jdbl:mysql://localhost/simpleboard:3306
+            jdbc:mysql://localhost/simpleboard
         </property>
 
         <property name="connection.username">
