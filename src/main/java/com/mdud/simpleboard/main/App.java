@@ -3,6 +3,7 @@ package com.mdud.simpleboard.main;
 import com.mdud.simpleboard.datamodel.Post;
 import com.mdud.simpleboard.datamodel.Topic;
 import com.mdud.simpleboard.datamodel.TopicManager;
+import com.mdud.simpleboard.users.User;
 import com.mdud.simpleboard.utility.GuiWrapper;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -33,13 +34,17 @@ public class App
             StandardServiceRegistryBuilder.destroy(registry);
         }
 
+        User user = null;
+//        Integer topicId = null;
+
         TopicManager topicManager = new TopicManager(sessionFactory);
         Scanner scanner = new Scanner(System.in);
         String command = "";
 
         System.out.println("SimpleBoard - Hibernate local notes board");
         System.out.println("Available commands: ");
-        System.out.println("q, ls, ls topicId, mktop, mkpost, rmtop, rmpost, edtop, edpost");
+        System.out.println("q, help, ls, ls topicId, mktop, mkpost, rmtop, rmpost, edtop, edpost, setuser, settopic");
+        System.out.println("Start with setuser");
 
         while(!command.equals("q")) {
             command = scanner.nextLine();
