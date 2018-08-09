@@ -4,7 +4,6 @@ import com.mdud.simpleboard.datamodel.Post;
 import com.mdud.simpleboard.datamodel.Topic;
 import com.mdud.simpleboard.datamodel.TopicManager;
 import com.mdud.simpleboard.utility.GuiWrapper;
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
