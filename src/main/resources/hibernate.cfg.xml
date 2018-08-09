@@ -31,6 +31,7 @@
 
         <mapping class="com.mdud.simpleboard.datamodel.Topic"/>
         <mapping class="com.mdud.simpleboard.datamodel.Post"/>
-
+        <mapping class="com.mdud.simpleboard.users.User"/>
+        
     </session-factory>
 </hibernate-configuration>
