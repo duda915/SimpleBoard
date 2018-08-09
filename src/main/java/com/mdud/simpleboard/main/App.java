@@ -21,7 +21,7 @@ public class App
     private static SessionFactory sessionFactory;
     public static void main( String[] args )
     {
-        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+//        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure("hibernate.cfg.xml")
             .build();
@@ -45,10 +45,6 @@ public class App
             command = scanner.nextLine();
             String[] parameters = command.toLowerCase().split(" ");
 
-            System.out.println();
-            System.out.println();
-            System.out.println();
-
             switch(parameters[0]) {
                 case "help":
                     System.out.println("Available commands: ");
@@ -57,6 +53,7 @@ public class App
                     break;
                 case "ls":
                     if(parameters.length == 1) {
+                        System.out.println();
                         GuiWrapper.drawTopicList(topicManager.getTopicList());
                         break;
                     }
@@ -68,6 +65,7 @@ public class App
                                 System.out.println("Wrong Id");
                                 break;
                             }
+                            System.out.println();
                             GuiWrapper.drawTopic(topic, topicManager.getTopicPosts(topicId));
                             break;
                         } catch (NumberFormatException e) {
