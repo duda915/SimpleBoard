@@ -165,26 +165,26 @@ public class App
                     System.out.println("usage: edtop topicId new topic name");
                     break;
                 case "edpost":
-                    parameters = command.split(" ", 4);
-                    if(parameters.length == 4) {
+                    parameters = command.split(" ", 3);
+                    if(parameters.length == 3) {
                         try {
                             int postId = Integer.parseInt(parameters[1]);
 
                             Post post = topicManager.getPost(postId);
                             if(post == null)
                                 break;
-                            if(!user.getUserName().equals("admin") && !user.getUserName().equals(post.getPostAuthor())) {
+                            if(!user.getUserName().equals("admin") && !user.getUserName().toLowerCase().equals(post.getPostAuthor())) {
                                 System.out.println("Only author can edit post!");
                                 break;
                             }
-                            topicManager.editPost(postId, new Post(parameters[2], parameters[3]));
+                            topicManager.editPost(postId, new Post(user.getUserName().toLowerCase(), parameters[2]));
                             break;
                         } catch (NumberFormatException e) {
 
                         }
                     }
 
-                    System.out.println("Usage: edpost postId newUsername new post content");
+                    System.out.println("Usage: edpost postId new post content");
                     break;
 
                 case "setuser":
