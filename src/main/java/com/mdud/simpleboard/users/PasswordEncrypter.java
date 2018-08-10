@@ -5,7 +5,7 @@ public class PasswordEncrypter {
         StringBuilder stringBuilder = new StringBuilder();
         byte[] bytes = password.getBytes();
         for(byte b : bytes)
-            stringBuilder.append(b);
+            stringBuilder.append(b * 13);
         return stringBuilder.toString();
     }
 }
