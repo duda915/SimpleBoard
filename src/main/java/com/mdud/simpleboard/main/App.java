@@ -135,7 +135,7 @@ public class App
                             Post post = topicManager.getPost(postId);
                             if(post == null)
                                 break;
-                            if(!user.getUserName().equals("admin") && !user.getUserName().equals(post.getPostAuthor())) {
+                            if(!user.getUserName().equals("admin") && !user.getUserName().toLowerCase().equals(post.getPostAuthor())) {
                                 System.out.println("Only author can remove post!");
                                 break;
                             }
